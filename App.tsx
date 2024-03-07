@@ -119,7 +119,7 @@ const AssignmentOne = () => {
   const [displayText, setDisplayText] = useState('');
 
   const handleButtonClick = () => {
-    setDisplayText('Syed Muhammad Hasan');
+    setDisplayText('Zain ul abdin and jazi Sohail');
   };
 
   return (
