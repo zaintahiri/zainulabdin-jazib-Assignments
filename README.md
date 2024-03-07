@@ -1,5 +1,10 @@
 partner-1: Zain ul abdin - zainulabdin.uos - zaintahiri
 partner-2: Jazib Sohail - js.justuju@gmail.com 
+ Zain ul Abdin - zainulabdin.uos@gmail.com – zaintahiri
+ 
+ Jazib Sohail - js.justuju@gmail.com - 
+
+
 
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
