@@ -1,8 +1,8 @@
 partner-1: Zain ul abdin - zainulabdin.uos - zaintahiri
-partner-2: Jazib Sohail - js.justuju@gmail.com 
+partner-2: Jazib Sohail - js.justuju@gmail.com - sohailjazib
  Zain ul Abdin - zainulabdin.uos@gmail.com – zaintahiri
  
- Jazib Sohail - js.justuju@gmail.com - 
+ Jazib Sohail - js.justuju@gmail.com - sohailjazib
 
 
 
