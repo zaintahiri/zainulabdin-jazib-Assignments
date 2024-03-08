@@ -75,6 +75,7 @@ function HomeScreen() {
                   // Alert.alert('Settings is called')
                   navigation.navigate("Settings"); //navigate("ProfileScreen");
                   //adsfasfsafsaddfsfasdfsd
+                  //asdfasdfasdfasdf dsfasdfsafasd
                 }}/>
             </View>
           </View>
