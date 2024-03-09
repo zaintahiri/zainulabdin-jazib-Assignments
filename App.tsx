@@ -39,9 +39,41 @@ const Stack = createNativeStackNavigator();
 
 function ProfileScreen() {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Profile Screen</Text>
-    </View>
+    <View style={[styles.container,
+      {
+        // Try setting `flexDirection` to `"row"`.
+        flexDirection: 'column',
+      }]}>
+      <View style={{flexDirection:'row',backgroundColor:'red'}}>
+          <Text style={{flex:1,textAlign:'center',padding:5,fontSize:20,color:'white'}}>
+              Profile
+          </Text>
+      </View>
+
+        <View style={{flexDirection:'row',height:30,marginTop:10}}>
+
+            <View style={{flex:2,alignItems:'center',justifyContent:'center'}}>
+                  <Text style={{color:'black',fontFamily: 'fontFamily-bold', fontWeight: 'bold'}}>
+                    Username :
+                  </Text>
+            </View> 
+            
+            <TextInput value='' style={{flex:4,borderWidth:1,borderColor:'red',marginEnd:10}}/>
+        </View>
+
+        <View style={{flexDirection:'row',height:30,marginTop:10}}>
+
+        <View style={{flex:2,alignItems:'center',justifyContent:'center'}}>
+              <Text style={{color:'black',fontFamily: 'fontFamily-bold', fontWeight: 'bold'}}>
+                Fathername :
+              </Text>
+        </View> 
+
+        <TextInput value='' style={{flex:4,borderWidth:1,borderColor:'red',marginEnd:10}}/>
+        </View>
+  </View>
+
+    
   );
 }
 
@@ -254,7 +286,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'stretch',
   },
   fixToText: {
