@@ -63,14 +63,28 @@ function ProfileScreen() {
 
         <View style={{flexDirection:'row',height:30,marginTop:10}}>
 
-        <View style={{flex:2,alignItems:'center',justifyContent:'center'}}>
-              <Text style={{color:'black',fontFamily: 'fontFamily-bold', fontWeight: 'bold'}}>
-                Fathername :
-              </Text>
-        </View> 
+            <View style={{flex:2,alignItems:'center',justifyContent:'center'}}>
+                  <Text style={{color:'black',fontFamily: 'fontFamily-bold', fontWeight: 'bold'}}>
+                    Fathername :
+                  </Text>
+            </View> 
 
-        <TextInput value='' style={{flex:4,borderWidth:1,borderColor:'red',marginEnd:10}}/>
+            <TextInput value='' style={{flex:4,borderWidth:1,borderColor:'red',marginEnd:10}}/>
         </View>
+
+        <View style={{flexDirection:'row',height:30,marginTop:10}}>
+
+            <View style={{flex:2,alignItems:'center',justifyContent:'center'}}>
+                  <Text style={{color:'black',fontFamily: 'fontFamily-bold', fontWeight: 'bold'}}>
+                    {}
+                  </Text>
+            </View> 
+
+            <View style={{flex:4,borderWidth:1,borderColor:'red',marginEnd:10}}>
+              <Button title='Count' />
+            </View>
+        </View>
+        
   </View>
 
     
