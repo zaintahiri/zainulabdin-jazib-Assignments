@@ -7,7 +7,7 @@
 
 // import React from 'react';
 
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import type {PropsWithChildren} from 'react';
 import ExStyle from './assets/images/Css/ExStyle';
 import {
@@ -34,8 +34,63 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useDispatch, useSelector } from 'react-redux';
+import { decrementAction, incrementAction } from './components/redux/actions';
+import Assignment2_3 from './Assignment2_3';
 
 const Stack = createNativeStackNavigator();
+
+
+
+// const assingment_2_3 = (props) => {
+
+//   const prod=props.counter
+//     // console.warn(item);
+//     const dispatch=useDispatch()
+//     const  handlerIncrementAction =(prod)=>{
+//         dispatch(incrementAction(prod))
+//         // console.warn("Product",prod)
+//     }
+
+//     const  handlerDecrementAction =(prod)=>{
+//       dispatch(decrementAction(prod))
+//       // console.warn("Product",prod)
+//   }
+//   return (
+//     <View style={[styles.container,
+//       {
+//         // Try setting `flexDirection` to `"row"`.
+//         flexDirection: 'column',
+//       }]}>
+      
+
+//         <View style={{flexDirection:'row',marginTop:10}}>
+
+//           <View style={{flex:1,marginEnd:10}}>
+//                 <Button title='Decrement' onPress={()=>{
+//                                                       handlerDecrementAction(prod)
+//                                                     }}/>
+//           </View>
+//           <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>
+//                     <Text style={{fontSize:30,color:'black',fontFamily: 'fontFamily-bold', fontWeight: 'bold'}}>
+//                       {'0'}
+//                     </Text>
+//           </View> 
+
+//           <View style={{flex:1,marginEnd:10}}>
+//                 <Button title='Increement' onPress={()=>{
+//                                                     handlerIncrementAction(prod)
+//                                                   }}/>
+//           </View>
+//         </View>
+        
+//   </View>
+
+    
+//   );
+// }
+
+
 
 function ProfileScreen() {
   return (
@@ -109,8 +164,8 @@ function HomeScreen() {
       },
     ]}>
       <View>
-          <View style={{ flexDirection: 'row',marginTop:5,padding:10,borderWidth:1, borderColor:'gray'}}>
-            <View style={{flex:1,marginEnd:5}}>
+          <View style={{ flexDirection: 'row',borderWidth:1, borderColor:'gray'}}>
+            <View style={{flex:1,marginStart:5,marginEnd:5}}>
                 <Button color="red" title='Profile' onPress={()=>{
                     navigation.navigate("Profile");
                 }}/>
@@ -124,6 +179,16 @@ function HomeScreen() {
                   //asdfasdfasdfasdf dsfasdfsafasd
                 }}/>
             </View>
+
+            <View style={{flex:1,marginEnd:10}}>
+                <Button color="red" title='Inc or Dec' onPress={()=>{
+                  // Alert.alert('Settings is called')
+                  navigation.navigate("Increment_Decrement"); //navigate("ProfileScreen");
+                  //adsfasfsafsaddfsfasdfsd
+                  //asdfasdfasdfasdf dsfasdfsafasd
+                }}/>
+            </View>
+            
           </View>
       </View>
      
@@ -156,22 +221,31 @@ function App(): React.JSX.Element {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
-  
+  // const cartData=useSelector((state)=>state.reducer)
+  // const [cardItems,setCardItems]=useState(0)
+  // useEffect(()=>{
+  //   setCardItems(cartData)
+  // },[] )
   
   return (
 
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Profile" component={ProfileScreen} />
-        <Stack.Screen name="Settings" component={SettingsScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    // <NavigationContainer>
+    //   <Stack.Navigator initialRouteName="Home">
+    //     <Stack.Screen name="Home" component={HomeScreen} />
+    //     <Stack.Screen name="Profile" component={ProfileScreen} />
+    //     <Stack.Screen name="Settings" component={SettingsScreen} />
+    //     <Stack.Screen name="Increment_Decrement" component={Assignment_2_3_Screen} initialParams={{ counter: cardItems }} />
+    //   </Stack.Navigator>
+    // </NavigationContainer>
 
        
     // AssignmentTwo()
     // AssignmentOne()
     // WorkingWithCss()
+
+    <Assignment2_3 item={1}/>
+
+      // assingment_2_3(cardItems)
   );
 }
 
