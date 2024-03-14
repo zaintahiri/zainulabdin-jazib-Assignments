@@ -7,7 +7,7 @@
 
 // import React from 'react';
 
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import type {PropsWithChildren} from 'react';
 import ExStyle from './assets/images/Css/ExStyle';
 import {
@@ -32,36 +32,187 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useDispatch, useSelector } from 'react-redux';
+import { decrementAction, incrementAction } from './components/redux/actions';
+import Assignment2_3 from './Assignment2_3';
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
+const Stack = createNativeStackNavigator();
 
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+
+
+// const assingment_2_3 = (props) => {
+
+//   const prod=props.counter
+//     // console.warn(item);
+//     const dispatch=useDispatch()
+//     const  handlerIncrementAction =(prod)=>{
+//         dispatch(incrementAction(prod))
+//         // console.warn("Product",prod)
+//     }
+
+//     const  handlerDecrementAction =(prod)=>{
+//       dispatch(decrementAction(prod))
+//       // console.warn("Product",prod)
+//   }
+//   return (
+//     <View style={[styles.container,
+//       {
+//         // Try setting `flexDirection` to `"row"`.
+//         flexDirection: 'column',
+//       }]}>
+      
+
+//         <View style={{flexDirection:'row',marginTop:10}}>
+
+//           <View style={{flex:1,marginEnd:10}}>
+//                 <Button title='Decrement' onPress={()=>{
+//                                                       handlerDecrementAction(prod)
+//                                                     }}/>
+//           </View>
+//           <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>
+//                     <Text style={{fontSize:30,color:'black',fontFamily: 'fontFamily-bold', fontWeight: 'bold'}}>
+//                       {'0'}
+//                     </Text>
+//           </View> 
+
+//           <View style={{flex:1,marginEnd:10}}>
+//                 <Button title='Increement' onPress={()=>{
+//                                                     handlerIncrementAction(prod)
+//                                                   }}/>
+//           </View>
+//         </View>
+        
+//   </View>
+
+    
+//   );
+// }
+
+
+
+function ProfileScreen() {
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
+    <View style={[styles.container,
+      {
+        // Try setting `flexDirection` to `"row"`.
+        flexDirection: 'column',
+      }]}>
+      <View style={{flexDirection:'row',backgroundColor:'red'}}>
+          <Text style={{flex:1,textAlign:'center',padding:5,fontSize:20,color:'white'}}>
+              Profile
+          </Text>
+      </View>
+
+        <View style={{flexDirection:'row',height:30,marginTop:10}}>
+
+            <View style={{flex:2,alignItems:'center',justifyContent:'center'}}>
+                  <Text style={{color:'black',fontFamily: 'fontFamily-bold', fontWeight: 'bold'}}>
+                    Username :
+                  </Text>
+            </View> 
+            
+            <TextInput value='' style={{flex:4,borderWidth:1,borderColor:'red',marginEnd:10}}/>
+        </View>
+
+        <View style={{flexDirection:'row',height:30,marginTop:10}}>
+
+            <View style={{flex:2,alignItems:'center',justifyContent:'center'}}>
+                  <Text style={{color:'black',fontFamily: 'fontFamily-bold', fontWeight: 'bold'}}>
+                    Fathername :
+                  </Text>
+            </View> 
+
+            <TextInput value='' style={{flex:4,borderWidth:1,borderColor:'red',marginEnd:10}}/>
+        </View>
+
+        <View style={{flexDirection:'row',height:30,marginTop:10}}>
+
+            <View style={{flex:2,alignItems:'center',justifyContent:'center'}}>
+                  <Text style={{color:'black',fontFamily: 'fontFamily-bold', fontWeight: 'bold'}}>
+                    {}
+                  </Text>
+            </View> 
+
+            <View style={{flex:4,borderWidth:1,borderColor:'red',marginEnd:10}}>
+              <Button title='Count' />
+            </View>
+        </View>
+        
+  </View>
+
+    
+  );
+}
+
+function SettingsScreen() {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Settings Screen</Text>
     </View>
   );
 }
+function HomeScreen() {
+  const navigation = useNavigation();
+  return (
+    <View style={[
+      styles.container,
+      {
+        // Try setting `flexDirection` to `"row"`.
+        flexDirection: 'column',
+      },
+    ]}>
+      <View>
+          <View style={{ flexDirection: 'row',borderWidth:1, borderColor:'gray'}}>
+            <View style={{flex:1,marginStart:5,marginEnd:5}}>
+                <Button color="red" title='Profile' onPress={()=>{
+                    navigation.navigate("Profile");
+                }}/>
+              </View>    
+            
+              <View style={{flex:1,marginEnd:5}}>
+                <Button color="red" title='Settings' onPress={()=>{
+                  // Alert.alert('Settings is called')
+                  navigation.navigate("Settings"); //navigate("ProfileScreen");
+                  //adsfasfsafsaddfsfasdfsd
+                  //asdfasdfasdfasdf dsfasdfsafasd
+                }}/>
+            </View>
+
+            <View style={{flex:1,marginEnd:10}}>
+                <Button color="red" title='Inc or Dec' onPress={()=>{
+                  // Alert.alert('Settings is called')
+                  navigation.navigate("Increment_Decrement"); //navigate("ProfileScreen");
+                  //adsfasfsafsaddfsfasdfsd
+                  //asdfasdfasdfasdf dsfasdfsafasd
+                }}/>
+            </View>
+            
+          </View>
+      </View>
+     
+      <View style={[{marginTop:5,marginBottom:5,flexDirection:'column',
+                      borderRadius:2,borderWidth:1,borderColor:'gray',flex:8,backgroundColor:'white'}]}>
+        <View style={[{ width: "100%", margin: 10}]}>
+          <Text style={{color:'red',fontSize:30,textAlign:'center'}}>Home Screen</Text>
+          <Text style={{color:'gray',fontSize:20,fontFamily: 'fontFamily-bold', fontWeight: 'bold'}}>Assignment by:</Text>
+          <Text style={{color:'gray',fontSize:15,marginStart:100,marginTop:10,fontFamily: 'fontFamily-bold', fontWeight: 'bold'}}>Zain ul Abdin and Jazib Sohail</Text>
+
+
+          
+        </View>
+      </View>
+      {/* <View style={{flex:8,flexDirection:'row',backgroundColor:'gray'}}>
+
+      </View> */}
+      
+      
+    </View>
+    
+  );
+}
+
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -70,12 +221,31 @@ function App(): React.JSX.Element {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
-  
+  // const cartData=useSelector((state)=>state.reducer)
+  // const [cardItems,setCardItems]=useState(0)
+  // useEffect(()=>{
+  //   setCardItems(cartData)
+  // },[] )
   
   return (
-    AssignmentTwo()
+
+    // <NavigationContainer>
+    //   <Stack.Navigator initialRouteName="Home">
+    //     <Stack.Screen name="Home" component={HomeScreen} />
+    //     <Stack.Screen name="Profile" component={ProfileScreen} />
+    //     <Stack.Screen name="Settings" component={SettingsScreen} />
+    //     <Stack.Screen name="Increment_Decrement" component={Assignment_2_3_Screen} initialParams={{ counter: cardItems }} />
+    //   </Stack.Navigator>
+    // </NavigationContainer>
+
+       
+    // AssignmentTwo()
     // AssignmentOne()
     // WorkingWithCss()
+
+    <Assignment2_3 item={1}/>
+
+      // assingment_2_3(cardItems)
   );
 }
 
@@ -167,11 +337,11 @@ const AssignmentTwo = () => {
       <View style={[styles.verticalFix,{flex: 8, justifyContent:'center'}]}>
             
             <View style={[{ width: "90%", margin: 10}]}>
-              <Text style={styles.titleText}>Zain ul abdin</Text>
+              <Text style={styles.titleText}>Janzib Sohail, my assignment-2.1</Text>
             </View>
            
             <View style={[{ width: "90%", margin: 10, backgroundColor: "gold" }]}>
-              <Button title="Next" color="green" onPress={()=>{Alert.alert('HI ZAIN  WELCOME TO HERE')}}/>
+              <Button title="Next" color="blue"/>
           </View>      
             
         </View>
@@ -204,11 +374,10 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'stretch',
   },
   fixToText: {
-    backgroundColor:'green',
+    backgroundColor:'blue',
     flexDirection: 'row',
   },
   verticalFix: {

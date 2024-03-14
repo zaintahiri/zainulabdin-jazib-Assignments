@@ -1,0 +1,2 @@
+export const CONST_INCREMENT='INCREMENT'
+export const CONST_DECREMENT='DECREMENT'
