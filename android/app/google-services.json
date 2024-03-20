@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "200945655443",
+    "project_id": "zainulabdin-jazib-assignments",
+    "storage_bucket": "zainulabdin-jazib-assignments.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:200945655443:android:81a16a4f60760a861c3766",
+        "android_client_info": {
+          "package_name": "com.awesomeprojecttwo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgC770UHmsJC3xHptTXHXZy45t38pyh1M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
