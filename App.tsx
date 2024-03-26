@@ -23,7 +23,12 @@ import {
   View,
 } from 'react-native';
 
+// import * as ImagePicker from 'expo-image-picker';
+// import * as Permissions from 'expo-permissions';
 import {TextInput, TouchableOpacity} from 'react-native';
+import Geolocation from  '@react-native-community/geolocation';
+import messaging from '@react-native-firebase/messaging';
+
 import {
   Colors,
   DebugInstructions,
@@ -37,7 +42,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {decrementAction, incrementAction} from './components/redux/actions';
 import Assignment2_3 from './Assignment2_3';
 
-import firestore, {Filter} from '@react-native-firebase/firestore';
+import firestore, {Filter, firebase} from '@react-native-firebase/firestore';
 import ShowData from './ShowData';
 
 const Stack = createNativeStackNavigator();
@@ -292,27 +297,29 @@ function RegisterScreen() {
   const [companyname, setCompanyName] = useState('');
   const [phonenumber, setPhoneNumber] = useState('');
   const [isChecked, setIsChecked] = useState(false);
-  //  // const usersCollection = firestore().collection('Users');
-  //  const userDocument = firestore().collection('Users').doc('4530332527577');
-  //  console.log(userDocument);
-  //   const registerHere=()=>{
-  // const validator = require('validator');
-  // if(username.length<=0){
-  //   console.log("Username is not valid")
-  //   return
-  // }else if(!validator.isEmail(email)){
-  //   console.log("Email is not valid")
-  //   return
-  // }else if(name.length<=0){
-  //   console.log("Name is not valid")
-  //   return
-  // }else {
+  const [location, setLocation] = useState(null);
 
-  //   //console.log("{username : '"+username+",Email : "+email+"',Name : '"+name+"'}")
-  // }
 
-  //   }
+
   const [data, setData] = useState({});
+  
+  useEffect(() => {
+    Geolocation.getCurrentPosition(position => {
+        
+      const { latitude, longitude } = position.coords;
+      Alert.alert("location :(latitude :"+latitude+",longitude:"+longitude+")")
+      setLocation({ latitude, longitude });
+      },
+        error => console.error('Error getting location: ', error),
+        { 
+          enableHighAccuracy: true, timeout: 20000,
+          maximumAge: 1000 
+        }
+    );
+    }, []);
+  
+  
+  
   const getData = async () => {
     try {
       const result = await firestore()
@@ -340,6 +347,9 @@ function RegisterScreen() {
           name: name,
           companyname: companyname,
           phonenumber: phonenumber,
+          latitude: location.latitude,
+          longitude: location.longitude
+
         })
         .then(() => {
           firestore()
@@ -587,8 +597,6 @@ function EditDataScreen({ route, navigation }){
   const [companynamestate, setCompanyName] = useState(companyname);
   const [phonenumberstate, setPhoneNumber] = useState(phonenumber);
   const [isCheckedstate, setIsChecked] = useState(true);
- 
- 
 
   const updateUser = async () => {
     try {
@@ -901,7 +909,59 @@ function  ViewDataScreen() {
    
    }       
       
+// function AddUserScreen(){
+//   const user = {
+//     image: null,
+//     latitude: null,
+//     longitude: null,
+//   };
 
+//  const handleCapturePicture = async () => {
+//     const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+
+//     if (status === 'granted') {
+//       let result = await ImagePicker.launchCameraAsync({
+//         mediaTypes: ImagePicker.MediaTypeOptions.Images,
+//         allowsEditing: true,
+//         aspect: [4, 3],
+//         quality: 1,
+//       });
+
+//       if (!result.cancelled) {
+//         this.setState({ image: result.uri });
+//       }
+//     } else {
+//       Alert.alert('Permission denied', 'Camera roll permission is required.');
+//     }
+//   };
+
+//   const handleSaveData = () => {
+//     const { image, latitude, longitude } = user;
+
+//     // Example code to save data to Firebase
+//     firestore().collection('users').add({
+//       image,
+//       latitude,
+//       longitude,
+//       // Other user information
+//     })
+//     .then(() => {
+//       Alert.alert('Success', 'User data saved successfully.');
+//     })
+//     .catch(error => {
+//       console.error('Error adding document: ', error);
+//       Alert.alert('Error', 'Failed to save user data.');
+//     });
+//   };
+//   return (
+//     <View>
+//       <Button title="Capture Picture" onPress={handleCapturePicture} />
+//       {/* Display captured image if available */}
+//       {user.image && <Image source={{ uri: user.image }} style={{ width: 200, height: 200 }} />}
+//     </View>
+//   );
+
+// }
 
 
 
@@ -919,6 +979,23 @@ function App(): React.JSX.Element {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
+  useEffect(() => {
+    getToken()
+  }, [])
+
+  const getToken=async()=>{
+    let token=await messaging().getToken()
+    console.log(token)
+  }
+
+  useEffect(() => {
+    const unsubscribe = messaging().onMessage(async remoteMessage => {
+      Alert.alert('A new FCM message arrived in forground mood',
+       JSON.stringify(remoteMessage));
+    });
+
+    return unsubscribe;
+  }, []);
   // const cartData=useSelector((state)=>state.reducer)
   // const [cardItems,setCardItems]=useState(0)
   // useEffect(()=>{
@@ -926,17 +1003,20 @@ function App(): React.JSX.Element {
   // },[] )
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Profile" component={ProfileScreen} />
-        <Stack.Screen name="Settings" component={SettingsScreen} />
-        <Stack.Screen name="Register" component={RegisterScreen} />
-        <Stack.Screen name="ViewData" component={ViewDataScreen} />
-        <Stack.Screen name="EditData" component={EditDataScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
-
+    // <NavigationContainer>
+    //   <Stack.Navigator initialRouteName="Home">
+    //     <Stack.Screen name="Home" component={HomeScreen} />
+    //     <Stack.Screen name="Profile" component={ProfileScreen} />
+    //     <Stack.Screen name="Settings" component={SettingsScreen} />
+    //     <Stack.Screen name="Register" component={RegisterScreen} />
+    //     <Stack.Screen name="ViewData" component={ViewDataScreen} />
+    //     <Stack.Screen name="EditData" component={EditDataScreen} />
+    //   </Stack.Navigator>
+    // </NavigationContainer>
+    <View>
+      <Text>Cloud Messaging</Text>
+    </View>
+    
 //
     // AssignmentTwo()
     // AssignmentOne()
