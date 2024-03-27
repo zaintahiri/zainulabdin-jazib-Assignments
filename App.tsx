@@ -44,8 +44,13 @@ import Assignment2_3 from './Assignment2_3';
 
 import firestore, {Filter, firebase} from '@react-native-firebase/firestore';
 import ShowData from './ShowData';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import Generalscreen from './profilescreencomponents/Generalscreen';
+import PasswordScreen from './profilescreencomponents/PasswordScreen';
+
 
 const Stack = createNativeStackNavigator();
+const Tab = createMaterialTopTabNavigator();
 
 // const assingment_2_3 = (props) => {
 
@@ -1003,6 +1008,19 @@ function App(): React.JSX.Element {
   // },[] )
 
   return (
+   
+   
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Stack.Screen name="General" component={Generalscreen} />
+        <Stack.Screen name="Credential" component={PasswordScreen} />
+        {/* <Stack.Screen name="Settings" component={SettingsScreen} /> */}
+        {/* <Tab.Screen name="Register" component={RegisterScreen} />
+        <Tab.Screen name="ViewData" component={ViewDataScreen} />
+        <Tab.Screen name="EditData" component={EditDataScreen} /> */}
+      </Tab.Navigator>
+    </NavigationContainer>
+   
     // <NavigationContainer>
     //   <Stack.Navigator initialRouteName="Home">
     //     <Stack.Screen name="Home" component={HomeScreen} />
@@ -1013,9 +1031,9 @@ function App(): React.JSX.Element {
     //     <Stack.Screen name="EditData" component={EditDataScreen} />
     //   </Stack.Navigator>
     // </NavigationContainer>
-    <View>
-      <Text>Cloud Messaging</Text>
-    </View>
+    // <View>
+    //   <Text>Cloud Messaging</Text>
+    // </View>
     
 //
     // AssignmentTwo()
