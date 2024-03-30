@@ -43,7 +43,10 @@ import {decrementAction, incrementAction} from './components/redux/actions';
 import Assignment2_3 from './Assignment2_3';
 
 import firestore, {Filter, firebase} from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
 import ShowData from './ShowData';
+import PhoneAuthScreen from './PhoneAuthScreen';
+import PhoneScreen from './PhoneAuthScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -194,7 +197,7 @@ function HomeScreen() {
       <View>
         <View
           style={{flexDirection: 'row', borderWidth: 1, borderColor: 'gray'}}>
-          <View style={{flex: 1, marginStart: 5, marginEnd: 5}}>
+          {/* <View style={{flex: 1, marginStart: 5, marginEnd: 5}}>
             <Button
               color="red"
               title="Profile"
@@ -202,9 +205,9 @@ function HomeScreen() {
                 navigation.navigate('Profile');
               }}
             />
-          </View>
+          </View> */}
 
-          <View style={{flex: 1, marginEnd: 5}}>
+          {/* <View style={{flex: 1, marginEnd: 5}}>
             <Button
               color="red"
               title="Settings"
@@ -215,7 +218,7 @@ function HomeScreen() {
                 //asdfasdfasdfasdf dsfasdfsafasd
               }}
             />
-          </View>
+          </View> */}
 
           <View style={{flex: 1, marginEnd: 10}}>
             <Button
@@ -242,6 +245,18 @@ function HomeScreen() {
               }}
             />
           </View>
+
+          <View style={{flex: 1, marginEnd: 10}}>
+            <Button
+              color="red"
+              title="Login Auth"
+              onPress={() => {
+                navigation.navigate('Login'); 
+              }}
+            />
+          </View>
+
+          
         </View>
       </View>
 
@@ -907,7 +922,10 @@ function  ViewDataScreen() {
      
     ); 
    
-   }       
+   } 
+   
+
+    
       
 // function AddUserScreen(){
 //   const user = {
@@ -1003,19 +1021,22 @@ function App(): React.JSX.Element {
   // },[] )
 
   return (
-    // <NavigationContainer>
-    //   <Stack.Navigator initialRouteName="Home">
-    //     <Stack.Screen name="Home" component={HomeScreen} />
-    //     <Stack.Screen name="Profile" component={ProfileScreen} />
-    //     <Stack.Screen name="Settings" component={SettingsScreen} />
-    //     <Stack.Screen name="Register" component={RegisterScreen} />
-    //     <Stack.Screen name="ViewData" component={ViewDataScreen} />
-    //     <Stack.Screen name="EditData" component={EditDataScreen} />
-    //   </Stack.Navigator>
-    // </NavigationContainer>
-    <View>
-      <Text>Cloud Messaging</Text>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} />
+        {/* <Stack.Screen name="Profile" component={ProfileScreen} />
+        <Stack.Screen name="Settings" component={SettingsScreen} /> */}
+        <Stack.Screen name="Register" component={RegisterScreen} />
+        <Stack.Screen name="ViewData" component={ViewDataScreen} />
+        <Stack.Screen name="EditData" component={EditDataScreen} />
+        <Stack.Screen name="Login" component={PhoneScreen} />
+
+        
+      </Stack.Navigator>
+    </NavigationContainer>
+    // <View>
+    //   <Text>Cloud Messaging</Text>
+    // </View>
     
 //
     // AssignmentTwo()
