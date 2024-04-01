@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Alert, Button, TextInput,View } from 'react-native';
 import auth from '@react-native-firebase/auth';
 
+// Assignment_3.2 is done by zain and jazib sohail
 const PhoneScreen=()=> {
   // If null, no SMS has been sent
   const [confirm, setConfirm] = useState(null);
